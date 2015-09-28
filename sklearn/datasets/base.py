@@ -300,7 +300,6 @@ def load_wdbc():
     Dimensionality                  30
     Features            real, positive
     =================   ==============    
-    M(0,212)  B(1,357)
     Returns
     -------
     data : Bunch
@@ -318,9 +317,9 @@ def load_wdbc():
     >>> from sklearn.datasets import load_wdbc
     >>> data = load_wdbc()
     >>> data.target[[10, 50, 85]]
-    array([0, 1, 1])
+    array([0, 1, 0])
     >>> list(data.target_names)
-    ['malignant', 'benign', 'benign']
+    ['malignant', 'benign']
     """
     module_path = dirname(__file__)
     with open(join(module_path, 'data', 'wdbc.csv')) as csv_file:
@@ -328,7 +327,7 @@ def load_wdbc():
         temp = next(data_file)
         n_samples = int(temp[0])
         n_features = int(temp[1])
-        target_names = np.array(temp[2:])
+        target_names = np.array(temp[2:4])
         data = np.empty((n_samples, n_features))
         target = np.empty((n_samples,), dtype = np.int)
         feature_names = ['mean radius', 'mean texture', 'mean perimeter', 'mean area', 'mean smoothness', 
